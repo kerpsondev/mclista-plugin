@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>pl.mclista</groupId>
-  <artifactId>mclista-minecraft</artifactId>
+  <artifactId>mclista-plugin</artifactId>
   <version>1.0.1</version>
   <build>
     <plugins>
@@ -10,7 +10,7 @@
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.4.2</version>
         <configuration>
-          <finalName>minecraft-lista-bukkit-(1.8-1.21.8)-${version}</finalName>
+          <finalName>mclista-paper</finalName>
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
         </configuration>
