@@ -29,7 +29,7 @@ public class UpdateNotifier implements InformationNotifier {
         "",
         "           &cDostępna jest nowa wersja!",
         String.format("   &8» &7Najnowsza wersja: &#F8FF00%s &8(&cAktualna: %s&8)", this.pluginUpdater.getNewestVersion(), this.pluginUpdater.getCurrentVersion()),
-        "   &8» &7&7Pobierz ją ze strony: &fhttps://github.com",
+        "   &8» &7&7Pobierz ją ze strony: &fhttps://github.com/kerpsondev/mclista-plugin/releases/latest",
         ""
     ).forEach(message -> this.console.sendMessage(this.miniMessage.deserialize(message)));
   }
