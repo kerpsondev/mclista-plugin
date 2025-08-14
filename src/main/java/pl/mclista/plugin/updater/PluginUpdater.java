@@ -7,7 +7,7 @@ import pl.mclista.plugin.http.HttpAccessor;
 
 public class PluginUpdater {
 
-  private final static String REPOSITORY = "mLicense-SDK";
+  private final static String REPOSITORY = "mclista-plugin";
 
   private final String currentVersion;
   private final HttpAccessor httpAccessor;
