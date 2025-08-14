@@ -134,7 +134,7 @@
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.4.2</version>
         <configuration>
-          <finalName>minecraft-lista-bukkit-(1.8-1.21.8)-${version}</finalName>
+          <finalName>mclista-paper</finalName>
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
         </configuration>
