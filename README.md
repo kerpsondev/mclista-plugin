@@ -15,23 +15,13 @@ Prosta konfiguracja, niezawodne działanie, ultra szybki.
 - Serwer utworzony na stronie [mclista.pl](https://mclista.pl)
 - OPCJONALNIE: Baza danych mysql/mariadb/mongodb
 
-## ✅ Aktualizacje
-
-To dopiero jedna z pierwszych wersji pluginu, będzie on rozwijany z dnia na dzień.
-<br>
-Dzięki mojemu doświadczeniu i pomysłowości plugin niebawem stanie się nie do poznania.
-
-<br>
-System aktualizacji informuje administrację o aktualizacjach pluginu w konsoli.
-Dostępna jest również komenda /mclista-admin, pozwalająca sprawdzić czy plugin jest aktualny.
-
 ## 💛 Moduł API
 
-Api można dodać do projektu maven/gradle
+Api można dodać do projektu maven/gradle.
 <br>
-Aktualne platformy:
+Aktualne wspierane platformy:
 - bukkit
-- velocity (trwają prace)
+- velocity (trwają prace nad modułem)
 
 ### Maven
 
@@ -64,7 +54,11 @@ implementation("pl.mclista:mclista-{platform}-api:1.1.0-beta2")
 ```
 <br>
 
-### Pobieranie DeveloperService do projektu
+## 🤖 Używanie API
+
+W pierwszej kolejności zalecam pobranie klasy DeveloperService.
+<br>
+Przykład dla api bukkita:
 
 ```java
 RegisteredServiceProvider<DeveloperService> provider = Bukkit.getServicesManager().getRegistration(DeveloperService.class);
@@ -73,52 +67,65 @@ if (provider != null) {
 }
 ```
 
-DeveloperService zwraca UserService oraz RewardApiClient
+DeveloperService zwraca dwa objekty, UserService oraz RewardApiClient.
 <br>
-Każda akcja zwraca objekt DeveloperAction (jeżeli tego wymaga)
+Każda akcja zwracająca objekt zwraca DeveloperService:
 ```java
   @NotNull RESULT getResult();
 
   @Nullable Optional<Throwable> getThrowable();
 ```
 > [!IMPORTANT]
-> Throwable może być nullem, za to result nigdy.
+> Result nigdy nie jest nullem
 
 ### Obsługa eventów
 
-Aktualnie plugin posiada 2 zdarzenia
+Aktualnie plugin posiada 2 eventy:
 - PostRewardReceiveEvent (Event wywoływany po odebraniu nagrody)
-- PreRewardReceiveEvent (Event wywoływany przed odebraniem, można zablokować)
+- PreRewardReceiveEvent (Event wywoływany przed odebraniem, można anulować akcję odbioru nagrody i ustawić własne warunki)
 
-Event dla każdego modułu posiada przedrostek {platform} czyli np. BukkitPreRewardReceiveEvent
+Event dla każdego modułu posiada przedrostek {platform} czyli np. BukkitPreRewardReceiveEvent.
 <br>
 
 ### UserService
 
-Klasa UserService pozwala operować na użytkownikach, nawet tych offline
+Klasa UserService pozwala operować na użytkownikach, nawet tych offline.
 <br>
-Daje pełną swobodę w zarządzaniem użytkownikami
+Daje pełną swobodę w zarządzaniem użytkownikami.
 
 ```java
+  // Dodaje usera do listy
   void addUser(@NotNull User user);
 
+  // Usuwa usera z listy
   void removeUser(@NotNull UUID uuid);
 
+  // Pobiera użytkownika z listy
   Optional<User> getUser(@NotNull UUID uuid);
 
+  // Pobiera użytkownika z bazy danych (np. gdy jest offline)
   @NotNull CompletableFuture<DeveloperAction<User>> loadUser(@NotNull UUID uuid);
 
-  // Metoda zwraca użytkownika i go automatycznie zapisuje
+  // Zwraca użytkownika i go automatycznie zapisuje po wykonanych operacjach
   @NotNull CompletableFuture<DeveloperAction<User>> modifyUser(@NotNull UUID uuid, @NotNull Consumer<User> userConsumer);
 
+  // Zapisuje użytkownika
   @NotNull CompletableFuture<DeveloperAction<Boolean>> saveUser(@NotNull User user);
 
+  // Pobiera użytkowników online
   @NotNull Set<User> getUsers();
 
+  // Pobiera wszystkich użytkowników
   @NotNull CompletableFuture<DeveloperAction<Set<User>>> loadUsers();
 ```
 
-RewardApiResponse pozwala wysłać zapytanie z odpowiedzią, czy gracz zagłosował na serwer czy nie, delay trzeba pobrać ręcznie z objektu User
+### RewardApiClient
 
-### 💙 Status projektu
+Objekt ten pozwala wysłać zapytanie do api i otrzymać odpowiedź, czy gracz zagłosował na liście na nasz serwer czy nie.
+<br>
+Aby sprawdzić, czy użytkownik odebrał dziś nagrodę trzeba porównać delay z aktualnym czasem z objektu [User](#userservice)
+<br>
+No, ewentualnie można też robić swój delay, masz wybór!
+
+### 💛 Status projektu
 ![Alt](https://repobeats.axiom.co/api/embed/70650ca5fb9b12b8f5921304cf89af4fc8861c42.svg "Repobeats analytics image")
