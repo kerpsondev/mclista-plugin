@@ -13,17 +13,19 @@ public class DatabaseConfiguration extends OkaeriConfig {
 
   @Comment({
       "Typy bazy danych",
-      "  MYSQL - Baza danych typu sql, rekomendowany wybór",
-      "  MARIADB - Ulepszona wersja mysql, rekomendowany wybór",
-      "  SQLITE - Baza danych lokalna, prostota użytkowania"
+      "  MYSQL   - Klasyczna baza SQL, stabilna i szeroko stosowana",
+      "  MARIADB - Nowoczesna, ulepszona wersja MySQL, kompatybilna i wydajna, zalecany wybór",
+      "  SQLITE  - Lekka baza lokalna, nie wymaga serwera, dobry wybór dla małego serwera",
+      "  MONGODB - Baza dokumentowa, elastyczna, dynamiczna"
   })
   @CustomKey("database-type")
   private DatabaseType databaseType = DatabaseType.SQLITE;
 
-  @Comment({
-      "Konfiguracja bazy danych mysql",
-      "Tylko w przypadku typu mysql lub mariadb"
-  })
+  @Comment("Konfiguracja bazy danych mysql")
   @CustomKey("mysql-configuration")
   private MysqlConfiguration mysqlConfiguration = new MysqlConfiguration();
+
+  @Comment("Konfiguracja mongodb")
+  @CustomKey("mongodb-configuration")
+  private MongodbConfiguration mongodbConfiguration = new MongodbConfiguration();
 }
