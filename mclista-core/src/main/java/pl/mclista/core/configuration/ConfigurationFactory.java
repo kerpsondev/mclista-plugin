@@ -39,6 +39,7 @@ public abstract class ConfigurationFactory {
 
         Arrays.stream(serdesPacks).forEach(it::withSerdesPack);
 
+        it.withRemoveOrphans(true);
         it.saveDefaults();
         it.load(true);
       });

@@ -22,6 +22,7 @@ public class MessageConfiguration extends OkaeriConfig {
       "  SERVER_NOT_FOUND - Nie znaleziono serwera",
       "  INVALID_SERVER_ID - Niepoprawne id serwera, należy zgłosić się do administracji"
   })
+  @CustomKey("failure-messages")
   private Map<ApiFailtureCause, String> failureMessages = new HashMap<ApiFailtureCause, String>() {{
     this.put(ApiFailtureCause.UNKNOWN, "&cNieznany błąd! Zgłoś się do administracji");
     this.put(ApiFailtureCause.RARE_LIMIT, "&cPrzekroczony limit połączeń z api, odczekaj chwile");
