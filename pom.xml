@@ -15,6 +15,17 @@
     <module>mclista-bukkit</module>
   </modules>
 
+  <distributionManagement>
+    <repository>
+      <id>mclista-repository-releases</id>
+      <url>https://repository.mclista.pl/releases</url>
+    </repository>
+  </distributionManagement>
+
+  <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+  </properties>
+
   <repositories>
     <!-- Engine repository -->
     <repository>

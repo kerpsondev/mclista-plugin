@@ -13,6 +13,10 @@
     <version>1.0.1</version>
   </parent>
 
+  <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+  </properties>
+
   <dependencies>
     <!-- Adventure libraries -->
     <dependency>
