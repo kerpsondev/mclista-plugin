@@ -13,7 +13,7 @@ Prosta konfiguracja, niezawodne działanie, ultra szybki.
 
 - Silnik paper (1.8 - 1.21.8)
 - Serwer utworzony na stronie [mclista.pl](https://mclista.pl)
-- OPCJONALNIE: Baza danych mysql/mariadb
+- OPCJONALNIE: Baza danych mysql/mariadb/mongodb
 
 ## ✅ Aktualizacje
 
