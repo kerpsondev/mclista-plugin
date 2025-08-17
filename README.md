@@ -25,11 +25,13 @@ Dzięki mojemu doświadczeniu i pomysłowości plugin niebawem stanie się nie d
 System aktualizacji informuje administrację o aktualizacjach pluginu w konsoli.
 Dostępna jest również komenda /mclista-admin, pozwalająca sprawdzić czy plugin jest aktualny.
 
-## 💙 Obsługa api
+## 💛 Moduł API
 
 Api można dodać do projektu maven/gradle
+<br>
 Aktualne platformy:
 - bukkit
+- velocity (trwają prace)
 
 ### Maven
 
@@ -66,12 +68,21 @@ implementation("pl.mclista:mclista-{platform}-api:1.1.0-beta2")
 
 ```java
 RegisteredServiceProvider<DeveloperService> provider = Bukkit.getServicesManager().getRegistration(DeveloperService.class);
-    if (provider != null) {
-      DeveloperService developerService = provider.getProvider();
-    }
+if (provider != null) {
+  DeveloperService developerService = provider.getProvider();
+}
 ```
 
 DeveloperService zwraca UserService oraz RewardApiClient
+<br>
+Każda akcja zwraca objekt DeveloperAction (jeżeli tego wymaga)
+```java
+  @NotNull RESULT getResult();
+
+  @Nullable Optional<Throwable> getThrowable();
+```
+> [!IMPORTANT]
+> Throwable może być nullem, za to result nigdy.
 
 ### Obsługa eventów
 
@@ -80,4 +91,34 @@ Aktualnie plugin posiada 2 zdarzenia
 - PreRewardReceiveEvent (Event wywoływany przed odebraniem, można zablokować)
 
 Event dla każdego modułu posiada przedrostek {platform} czyli np. BukkitPreRewardReceiveEvent
+<br>
 
+### UserService
+
+Klasa UserService pozwala operować na użytkownikach, nawet tych offline
+<br>
+Daje pełną swobodę w zarządzaniem użytkownikami
+
+```java
+  void addUser(@NotNull User user);
+
+  void removeUser(@NotNull UUID uuid);
+
+  Optional<User> getUser(@NotNull UUID uuid);
+
+  @NotNull CompletableFuture<DeveloperAction<User>> loadUser(@NotNull UUID uuid);
+
+  // Metoda zwraca użytkownika i go automatycznie zapisuje
+  @NotNull CompletableFuture<DeveloperAction<User>> modifyUser(@NotNull UUID uuid, @NotNull Consumer<User> userConsumer);
+
+  @NotNull CompletableFuture<DeveloperAction<Boolean>> saveUser(@NotNull User user);
+
+  @NotNull Set<User> getUsers();
+
+  @NotNull CompletableFuture<DeveloperAction<Set<User>>> loadUsers();
+```
+
+RewardApiResponse pozwala wysłać zapytanie z odpowiedzią, czy gracz zagłosował na serwer czy nie, delay trzeba pobrać ręcznie z objektu User
+
+### 💙 Status projektu
+![Alt](https://repobeats.axiom.co/api/embed/70650ca5fb9b12b8f5921304cf89af4fc8861c42.svg "Repobeats analytics image")
