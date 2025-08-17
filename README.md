@@ -73,3 +73,11 @@ RegisteredServiceProvider<DeveloperService> provider = Bukkit.getServicesManager
 
 DeveloperService zwraca UserService oraz RewardApiClient
 
+### Obsługa eventów
+
+Aktualnie plugin posiada 2 zdarzenia
+- PostRewardReceiveEvent (Event wywoływany po odebraniu nagrody)
+- PreRewardReceiveEvent (Event wywoływany przed odebraniem, można zablokować)
+
+Event dla każdego modułu posiada przedrostek {platform} czyli np. BukkitPreRewardReceiveEvent
+
