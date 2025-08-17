@@ -46,7 +46,7 @@ Aktualne platformy:
   <dependency>
     <groupId>pl.mclista</groupId>
     <artifactId>mclista-{platform}-api</artifactId>
-    <version>1.1.0-beta1</version>
+    <version>1.1.0-beta2</version>
   </dependency>
 </dependencies>
 ```
@@ -58,7 +58,7 @@ maven {
     url = uri("https://repository.mclista.pl/releases")
 }
 
-implementation("pl.mclista:mclista-{platform}-api:1.1.0-beta1")
+implementation("pl.mclista:mclista-{platform}-api:1.1.0-beta2")
 ```
 <br>
 
