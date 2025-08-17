@@ -1,0 +1,6 @@
+name: mclista-plugin
+version: 1.0.1
+main: pl.mclista.bukkit.BukkitPlugin
+author: kerpson
+api-version: 1.13
+website: www.mclista.pl
