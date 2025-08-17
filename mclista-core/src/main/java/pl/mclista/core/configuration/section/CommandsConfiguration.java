@@ -1,20 +1,21 @@
 package pl.mclista.core.configuration.section;
 
-import com.google.common.collect.ImmutableMap;
 import eu.okaeri.configs.OkaeriConfig;
 import java.util.Map;
 import java.util.Optional;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.jetbrains.annotations.NotNull;
+import pl.mclista.core.util.MapUtil;
+import pl.mclista.core.util.MapUtil.Pair;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class CommandsConfiguration extends OkaeriConfig {
 
-  private Map<String, CommandConfiguration> commands = ImmutableMap.of(
-      "mclista", new CommandConfiguration(true, "mclista", "nagroda", "Komenda do odebrania nagrody", "mclista.cmd.player"),
-      "mclista-admin", new CommandConfiguration(true, "mclista-admin", "mclistaa", "Komenda administracyjna", "mclista.cmd.admin")
+  private Map<String, CommandConfiguration> commands = MapUtil.createMap(
+      new Pair<>("mclista", new CommandConfiguration(true, "mclista", "nagroda", "Komenda do odebrania nagrody", "mclista.cmd.player")),
+      new Pair<>("mclista-admin", new CommandConfiguration(true, "mclista-admin", "mclistaa", "Komenda administracyjna", "mclista.cmd.admin"))
   );
 
   public Optional<CommandConfiguration> getCommandFromName(@NotNull String name) {
