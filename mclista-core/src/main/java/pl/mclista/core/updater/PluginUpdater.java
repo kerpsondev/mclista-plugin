@@ -8,7 +8,7 @@ public class PluginUpdater {
 
   private final static String REPOSITORY = "mclista-plugin";
 
-  private final static String CURRENT_VERSION = "1.0.2";
+  private final static String CURRENT_VERSION = "1.1.0-beta1";
 
   private String newestVersion;
 
