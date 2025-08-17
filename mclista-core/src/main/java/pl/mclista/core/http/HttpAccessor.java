@@ -27,8 +27,7 @@ public final class HttpAccessor {
     return CompletableFuture.supplyAsync(() -> {
       HttpResponse response = null;
       try {
-        HttpRequest request = REQUEST_FACTORY
-            .buildGetRequest(new GenericUrl(url));
+        HttpRequest request = REQUEST_FACTORY.buildGetRequest(new GenericUrl(url));
         request.setConnectTimeout(20_000);
         request.setReadTimeout(20_000);
 
@@ -37,8 +36,8 @@ public final class HttpAccessor {
         JsonObject jsonObject = GSON.fromJson(body, JsonObject.class);
         return bodyFunction.apply(jsonObject, response.getStatusCode());
 
-      } catch (IOException e) {
-        throw new RuntimeException(e);
+      } catch (IOException exception) {
+        throw new RuntimeException(exception);
       } finally {
         if (response != null) {
           try {

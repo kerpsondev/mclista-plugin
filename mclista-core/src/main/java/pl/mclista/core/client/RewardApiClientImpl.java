@@ -29,9 +29,12 @@ public class RewardApiClientImpl implements RewardApiClient {
             (RewardApiResponse) new RewardApiResponseImpl(statusCode),
             null
         )
-    ).exceptionally(throwable -> new DeveloperActionImpl<>(
-        new RewardApiResponseImpl(false, ApiFailtureCause.UNKNOWN),
-        throwable
-    ));
+    ).exceptionally(throwable -> {
+      throwable.printStackTrace();
+      return new DeveloperActionImpl<>(
+          new RewardApiResponseImpl(false, ApiFailtureCause.UNKNOWN),
+          throwable
+      );
+    });
   }
 }
