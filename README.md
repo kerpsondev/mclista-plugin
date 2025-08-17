@@ -25,10 +25,51 @@ Dzięki mojemu doświadczeniu i pomysłowości plugin niebawem stanie się nie d
 System aktualizacji informuje administrację o aktualizacjach pluginu w konsoli.
 Dostępna jest również komenda /mclista-admin, pozwalająca sprawdzić czy plugin jest aktualny.
 
-## 🤖 Komendy
+## 💙 Obsługa api
 
-- /nagroda
-- /mclista-admin
+Api można dodać do projektu maven/gradle
+Aktualne platformy:
+- bukkit
 
-## ⚠️ Uprawnienia
-- mclista.admin
+### Maven
+
+```xml
+<repositories>
+  <repository>
+    <id>mclista-repository-releases</id>
+    <name>Repozytorium McLista</name>
+    <url>https://repository.mclista.pl/releases</url>
+  </repository>
+</repositories>
+
+<dependencies>
+  <dependency>
+    <groupId>pl.mclista</groupId>
+    <artifactId>mclista-{platform}-api</artifactId>
+    <version>1.1.0-beta1</version>
+  </dependency>
+</dependencies>
+```
+
+### Gradle
+```gradle
+maven {
+    name = "mclistaRepositoryReleases"
+    url = uri("https://repository.mclista.pl/releases")
+}
+
+implementation("pl.mclista:mclista-{platform}-api:1.1.0-beta1")
+```
+<br>
+
+### Pobieranie DeveloperService do projektu
+
+```java
+RegisteredServiceProvider<DeveloperService> provider = Bukkit.getServicesManager().getRegistration(DeveloperService.class);
+    if (provider != null) {
+      DeveloperService developerService = provider.getProvider();
+    }
+```
+
+DeveloperService zwraca UserService oraz RewardApiClient
+
