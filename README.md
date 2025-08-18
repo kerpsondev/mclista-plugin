@@ -38,7 +38,7 @@ Aktualne wspierane platformy:
   <dependency>
     <groupId>pl.mclista</groupId>
     <artifactId>mclista-{platform}-api</artifactId>
-    <version>1.1.0-beta2</version>
+    <version>1.1.0-beta3</version>
   </dependency>
 </dependencies>
 ```
@@ -50,7 +50,7 @@ maven {
     url = uri("https://repository.mclista.pl/releases")
 }
 
-implementation("pl.mclista:mclista-{platform}-api:1.1.0-beta2")
+implementation("pl.mclista:mclista-{platform}-api:1.1.0-beta3")
 ```
 <br>
 
