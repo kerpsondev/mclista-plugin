@@ -3,6 +3,7 @@ package pl.mclista.bukkit;
 import com.alessiodp.libby.BukkitLibraryManager;
 import com.alessiodp.libby.LibraryManager;
 import dev.rollczi.litecommands.bukkit.LiteBukkitFactory;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.ServicePriority;
@@ -43,6 +44,8 @@ public class BukkitPlugin extends JavaPlugin implements DeveloperService {
 
   @Override
   public void onEnable() {
+    new Metrics(this, 26952);
+
     AudienceProvider audienceProvider = AudienceProvider.getInstance(this);
     SenderTransformer<CommandSender> senderTransformer = new BukkitSenderTransformer(audienceProvider);
     PlayerTransformer<Player, CommandSender> playerTransformer = new BukkitPlayerTransformer(audienceProvider);
