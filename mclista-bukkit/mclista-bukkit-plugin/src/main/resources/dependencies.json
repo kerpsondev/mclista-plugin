@@ -42,16 +42,16 @@
   {
     "group-id": "org.mongodb",
     "artifact-id": "mongodb-driver-sync",
-    "version": "5.6.0-alpha0"
+    "version": "5.6.0-SNAPSHOT"
   },
   {
     "group-id": "org.mongodb",
     "artifact-id": "bson",
-    "version": "5.6.0-alpha0"
+    "version": "5.6.0-SNAPSHOT"
   },
   {
     "group-id": "org.mongodb",
     "artifact-id": "mongodb-driver-core",
-    "version": "5.6.0-alpha0"
+    "version": "5.6.0-SNAPSHOT"
   }
 ]
