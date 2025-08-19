@@ -115,7 +115,7 @@
                   <shadedPattern>pl.mclista.bukkit.libs.kyori</shadedPattern>
                 </relocation>
                 <relocation>
-                  <pattern>eu.okaeri.configs.</pattern>
+                  <pattern>eu.okaeri.configs</pattern>
                   <shadedPattern>pl.mclista.bukkit.libs.okaeri</shadedPattern>
                 </relocation>
                 <relocation>
