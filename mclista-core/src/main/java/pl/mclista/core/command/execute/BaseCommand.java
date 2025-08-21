@@ -101,10 +101,12 @@ public class BaseCommand {
           this.serverAdapter.dispatchCommand(placeholders.apply(command));
         }
 
+        user.updateDelay();
+        this.userService.saveUser(user);
+
         this.eventFactory.getApiEventFactory().callPostRewardReceive(user, playerAdapter);
       });
 
-      user.updateDelay();
       audience.sendMessage(this.miniMessage.deserialize(this.messageConfiguration.getReceiveRewardMessage()));
     });
   }
