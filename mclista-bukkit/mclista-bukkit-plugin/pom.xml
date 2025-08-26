@@ -10,7 +10,7 @@
   <parent>
     <groupId>pl.mclista</groupId>
     <artifactId>mclista-bukkit</artifactId>
-    <version>1.1.0-beta3</version>
+    <version>1.1.0-beta4</version>
   </parent>
 
   <properties>
@@ -47,7 +47,7 @@
     <dependency>
       <groupId>pl.mclista</groupId>
       <artifactId>mclista-core</artifactId>
-      <version>1.1.0-beta3</version>
+      <version>1.1.0-beta4</version>
     </dependency>
 
     <!-- Commands -->
@@ -61,7 +61,7 @@
     <dependency>
       <groupId>pl.mclista</groupId>
       <artifactId>mclista-bukkit-api</artifactId>
-      <version>1.1.0-beta3</version>
+      <version>1.1.0-beta4</version>
     </dependency>
 
     <!-- Runtime -->
