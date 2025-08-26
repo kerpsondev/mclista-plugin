@@ -1,5 +1,5 @@
 name: mclista-plugin
-version: 1.1.0-beta3
+version: 1.1.0-beta4
 main: pl.mclista.bukkit.BukkitPlugin
 author: kerpson
 api-version: 1.13

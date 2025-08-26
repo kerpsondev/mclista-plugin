@@ -7,7 +7,7 @@
 
   <groupId>pl.mclista</groupId>
   <artifactId>mclista-plugin</artifactId>
-  <version>1.1.0-beta3</version>
+  <version>1.1.0-beta4</version>
 
   <modules>
     <module>mclista-core</module>
