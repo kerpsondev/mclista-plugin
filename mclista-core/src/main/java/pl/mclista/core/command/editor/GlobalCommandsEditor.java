@@ -32,6 +32,8 @@ public class GlobalCommandsEditor<SENDER> implements Editor<SENDER> {
 
     if (commandConfiguration.getPermission() != null && !commandConfiguration.getPermission().isEmpty()) {
       context.meta().put(Meta.PERMISSIONS, Collections.singletonList(new PermissionSet(commandConfiguration.getPermission())));
+    } else {
+      context.meta().put(Meta.PERMISSIONS, Collections.emptyList());
     }
 
     if (!commandConfiguration.isEnable()) {
