@@ -44,7 +44,7 @@
     <dependency>
       <groupId>dev.rollczi</groupId>
       <artifactId>litecommands-framework</artifactId>
-      <version>3.10.0</version>
+      <version>3.10.5</version>
       <scope>provided</scope>
     </dependency>
 
