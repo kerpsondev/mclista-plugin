@@ -35,8 +35,8 @@ public class RuntimeLibraries {
       jsonArray.forEach(jsonElement -> {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         libraries.add(Library.builder()
-                .groupId(jsonObject.get("group-id").getAsString())
-                .artifactId(jsonObject.get("artifact-id").getAsString())
+                .groupId(jsonObject.get("groupId").getAsString())
+                .artifactId(jsonObject.get("artifactId").getAsString())
                 .version(jsonObject.get("version").getAsString())
             .build());
       });
