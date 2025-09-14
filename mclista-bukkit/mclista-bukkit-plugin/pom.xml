@@ -54,7 +54,7 @@
     <dependency>
       <groupId>dev.rollczi</groupId>
       <artifactId>litecommands-bukkit</artifactId>
-      <version>3.10.4</version>
+      <version>3.10.5</version>
     </dependency>
 
     <!-- API -->
