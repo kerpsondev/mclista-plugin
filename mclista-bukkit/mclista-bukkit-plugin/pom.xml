@@ -134,7 +134,7 @@
       <plugin>
         <groupId>pl.kerpson</groupId>
         <artifactId>dep2json</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.4</version>
         <configuration>
           <outputFile>src/main/resources/dependencies.json</outputFile>
           <includeDependencies>
@@ -148,7 +148,8 @@
             org.xerial:sqlite-jdbc,
             org.mongodb:mongodb-driver-sync,
             org.mongodb:bson,
-            org.mongodb:mongodb-driver-core
+            org.mongodb:mongodb-driver-core,
+            com.github.ben-manes.caffeine:caffeine
           </includeDependencies>
         </configuration>
         <executions>

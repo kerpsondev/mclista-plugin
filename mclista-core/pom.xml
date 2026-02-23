@@ -136,6 +136,14 @@
       <version>4.12.0</version>
     </dependency>
 
+    <!-- Caffeine -->
+    <dependency>
+      <groupId>com.github.ben-manes.caffeine</groupId>
+      <artifactId>caffeine</artifactId>
+      <version>3.2.3</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- Junit -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>

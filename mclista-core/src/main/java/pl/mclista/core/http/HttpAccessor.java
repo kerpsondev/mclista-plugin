@@ -16,9 +16,9 @@ public final class HttpAccessor {
 
   private static final Gson GSON = new Gson();
   private static final OkHttpClient CLIENT = new OkHttpClient.Builder()
-      .callTimeout(20_000, java.util.concurrent.TimeUnit.MILLISECONDS)
-      .connectTimeout(20_000, java.util.concurrent.TimeUnit.MILLISECONDS)
-      .readTimeout(20_000, java.util.concurrent.TimeUnit.MILLISECONDS)
+      .callTimeout(10_000, java.util.concurrent.TimeUnit.MILLISECONDS)
+      .connectTimeout(10_000, java.util.concurrent.TimeUnit.MILLISECONDS)
+      .readTimeout(10_000, java.util.concurrent.TimeUnit.MILLISECONDS)
       .build();
 
   private HttpAccessor() {}
