@@ -1,10 +1,14 @@
 package pl.mclista.core.command.execute;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import dev.rollczi.litecommands.annotations.command.Command;
 import dev.rollczi.litecommands.annotations.context.Context;
 import dev.rollczi.litecommands.annotations.execute.Execute;
 import dev.rollczi.litecommands.annotations.permission.Permission;
+import java.time.Duration;
 import java.util.Optional;
+import java.util.UUID;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.jetbrains.annotations.NotNull;
@@ -25,6 +29,8 @@ import pl.mclista.core.util.TimeUtil;
 @Command(name = "mclista")
 @Permission("mclista.cmd.base")
 public class BaseCommand {
+
+  private final RewardReceiveBypassFix rewardReceiveBypassFix = new RewardReceiveBypassFix();
 
   private final RewardApiClient rewardApiClient;
   private final TaskFactory taskFactory;
@@ -64,6 +70,10 @@ public class BaseCommand {
       return;
     }
 
+    if (this.rewardReceiveBypassFix.isInCache(playerAdapter)) {
+      return;
+    }
+
     User user = userOptional.get();
     if (user.hasDelay()) {
       Placeholders placeholders = Placeholders.create()
@@ -77,9 +87,12 @@ public class BaseCommand {
       return;
     }
 
+    this.rewardReceiveBypassFix.addToCache(playerAdapter);
     audience.sendMessage(this.miniMessage.deserialize(this.messageConfiguration.getDownloadInformationMessage()));
 
     this.rewardApiClient.sendRequest(playerAdapter.getName()).thenAccept(developerAction -> {
+      this.rewardReceiveBypassFix.removeFromCache(playerAdapter);
+
       RewardApiResponse response = developerAction.getResult();
       if (!response.isSuccess()) {
         Optional<ApiFailtureCause> apiFailtureCauseOptional = response.getCause();
@@ -109,5 +122,24 @@ public class BaseCommand {
 
       audience.sendMessage(this.miniMessage.deserialize(this.messageConfiguration.getReceiveRewardMessage()));
     });
+  }
+
+  class RewardReceiveBypassFix {
+
+    private final Cache<UUID, Boolean> bypassCache = Caffeine.newBuilder()
+        .expireAfterWrite(Duration.ofSeconds(60L))
+        .build();
+
+    public void addToCache(PlayerAdapter playerAdapter) {
+      this.bypassCache.put(playerAdapter.getUniqueId(), true);
+    }
+
+    public void removeFromCache(PlayerAdapter playerAdapter) {
+      this.bypassCache.invalidate(playerAdapter.getUniqueId());
+    }
+
+    public boolean isInCache(PlayerAdapter playerAdapter) {
+      return this.bypassCache.getIfPresent(playerAdapter.getUniqueId()) != null;
+    }
   }
 }
